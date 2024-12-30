@@ -44,7 +44,7 @@ const AdminUserPage = () => {
 
     try {
       // Make the API request
-      const response = await axios.post("http://localhost:5000/api/user/admin", {
+      const response = await axios.post("https://bestrate-back.onrender.com/api/user/admin", {
         email,
         password,
       });

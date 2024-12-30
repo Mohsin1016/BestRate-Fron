@@ -44,7 +44,7 @@ const LoginPage = () => {
 
     try {
       // Make the API request
-      const response = await axios.post("http://localhost:5000/api/user/login", {
+      const response = await axios.post("https://bestrate-back.onrender.com/api/user/login", {
         email,
         password,
       });

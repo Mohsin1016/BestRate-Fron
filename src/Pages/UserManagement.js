@@ -15,7 +15,7 @@ const UserManagement = () => {
   const fetchUsers = async () => {
     try {
       const token = localStorage.getItem("authToken");
-      const response = await axios.get("http://localhost:5000/api/admin/users", {
+      const response = await axios.get("https://bestrate-back.onrender.com/api/admin/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -47,7 +47,7 @@ const UserManagement = () => {
     try {
       const token = localStorage.getItem("authToken");
       const response = await axios.put(
-        `http://localhost:5000/api/admin/user/${selectedUser._id}`,
+        `https://bestrate-back.onrender.com/api/admin/user/${selectedUser._id}`,
         { email: newEmail, password: newPassword },
         {
           headers: {
@@ -76,7 +76,7 @@ const UserManagement = () => {
     if (window.confirm("Are you sure you want to delete this user?")) {
       try {
         const token = localStorage.getItem("authToken");
-        await axios.delete(`http://localhost:5000/api/admin/user/${id}`, {
+        await axios.delete(`https://bestrate-back.onrender.com/api/admin/user/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

@@ -22,7 +22,7 @@ const AddUserPage = () => {
   
 
       const response = await axios.post(
-        "http://localhost:5000/api/admin/user",
+        "https://bestrate-back.onrender.com/api/admin/user",
         { email, password },
         {
           headers: {
