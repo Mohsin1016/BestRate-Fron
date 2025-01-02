@@ -14,6 +14,7 @@ const UserManagement = () => {
   // Fetch users from the backend
   const fetchUsers = async () => {
     try {
+      // https://bestrate-back.onrender.com
       const token = localStorage.getItem("authToken");
       const response = await axios.get("https://bestrate-back.onrender.com/api/admin/users", {
         headers: {
@@ -46,9 +47,11 @@ const UserManagement = () => {
 
     try {
       const token = localStorage.getItem("authToken");
+      console.log("⌛⌛⌛ id and token are both required" , `${selectedUser._id}` , "and" , token);
+
       const response = await axios.put(
-        `https://bestrate-back.onrender.com/api/admin/user/${selectedUser._id}`,
-        { email: newEmail, password: newPassword },
+        `https://bestrate-back.onrender.com/api/admin/user-update/${selectedUser._id}`,
+        {id: selectedUser._id , email: newEmail, password: newPassword },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -74,8 +77,10 @@ const UserManagement = () => {
 
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this user?")) {
+      
       try {
         const token = localStorage.getItem("authToken");
+
         await axios.delete(`https://bestrate-back.onrender.com/api/admin/user/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,

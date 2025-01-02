@@ -7,7 +7,7 @@ const AddUserPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // To store error messages
+  const [error, setError] = useState(""); 
 
   const handleSave = async () => {
     if (!email || !password) {

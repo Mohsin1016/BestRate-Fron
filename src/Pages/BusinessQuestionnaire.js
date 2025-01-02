@@ -258,7 +258,7 @@ const BusinessQuestionnaire = () => {
                     <input
                       type="radio"
                       name="bbb"
-                      value="yes"
+                      value="Yes"
                       className="mr-2"
                       onChange={handleInputChange}
                     />
@@ -286,7 +286,7 @@ const BusinessQuestionnaire = () => {
                     <input
                       type="radio"
                       name="international"
-                      value="yes"
+                      value="Yes"
                       className="mr-2"
                       onChange={handleInputChange}
                     />
@@ -322,7 +322,7 @@ const BusinessQuestionnaire = () => {
                     <input
                       type="radio"
                       name="legalSuits"
-                      value="yes"
+                      value="Yes"
                       className="mr-2"
                       onChange={handleInputChange}
                     />
@@ -350,7 +350,7 @@ const BusinessQuestionnaire = () => {
                     <input
                       type="radio"
                       name="visaFine"
-                      value="yes"
+                      value="Yes"
                       className="mr-2"
                       onChange={handleInputChange}
                     />
