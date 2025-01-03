@@ -50,7 +50,6 @@ const BusinessScoreCard = () => {
     return processing;
   };
   const handleBackdropClick = (e) => {
-    // Close modal if the click is outside the Box
     if (e.target === e.currentTarget) {
       setOpen(false);
     }
@@ -146,7 +145,7 @@ const BusinessScoreCard = () => {
     },
   ];
   const [showLightbox, setShowLightbox] = useState(false);
-  const score = responseData; // Dynamically calculated score
+  const score = responseData;
 
   const toggleLightbox = () => {
     setShowLightbox((prev) => !prev);
@@ -167,6 +166,7 @@ const BusinessScoreCard = () => {
             <span className="block">
               YOU ARE{" "}
               <a
+                href="/"
                 style={{ textDecoration: "underline", paddingRight: "3px" }}
                 className="text-[#6FC7AB] cursor-pointer"
                 onClick={handleOpen}
@@ -178,7 +178,7 @@ const BusinessScoreCard = () => {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
-                onBackdropClick={handleBackdropClick} // Close on clicking outside the modal
+                onBackdropClick={handleBackdropClick}
               >
                 <Box sx={style} onClick={handleBackdropClick}>
                   <Typography
@@ -209,6 +209,28 @@ const BusinessScoreCard = () => {
           <div className="mt-6">
             <h2 className="text-center text-lg sm:text-xl font-bold text-gray-800">
               Business Merchant Score
+              <span className="relative group">
+                <button className="ml-2 text-gray-600 hover:text-gray-800">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="w-5 h-5"
+                  >
+                    <circle cx="12" cy="12" r="10" className="fill-blue-100" />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 16v-4m0-4h.01"
+                    />
+                  </svg>
+                </button>
+                <div className="absolute top-1/2 left-full ml-2 transform -translate-y-1/2 w-48 bg-white text-gray-800 text-sm rounded-md shadow-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  This score indicates the performance and reliability of the business merchant.
+                </div>
+              </span>
             </h2>
             {/* <div className="mt-4 flex justify-center">
               <img src={meter} alt="Meter" className="w-32 sm:w-40 h-auto" />

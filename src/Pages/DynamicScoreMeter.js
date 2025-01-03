@@ -12,80 +12,103 @@ const DynamicScoreMeter = ({ score }) => {
 
   // Determine score category
   const getScoreDetails = (score) => {
-    if (score >= 800) return { label: "Excellent", color: "#30D68A" };
-    if (score >= 750) return { label: "Very Good", color: "#33CCCC" };
-    if (score >= 700) return { label: "Good", color: "#9966FF" };
-    if (score >= 600) return { label: "Fair", color: "#FFCC33" };
-    if (score >= 500) return { label: "Poor", color: "#FF9966" };
-    return { label: "Very Bad", color: "#FF6666" };
+    if (score >= 800) return { label: "EXCELLENT", color: "#30D68A" };
+    if (score >= 750) return { label: "VERY GOOD", color: "#33CCCC" };
+    if (score >= 700) return { label: "GOOD", color: "#9966FF" };
+    if (score >= 600) return { label: "FAIR", color: "#FFCC33" };
+    if (score >= 500) return { label: "POOR", color: "#FF9966" };
+    return { label: "VERY BAD", color: "#FF6666" };
   };
 
   const { label, color } = getScoreDetails(score);
-
-  // Map score to rotation (range 300 to 850)
-  const rotation = ((score - 300) / 550) * 180 - 90; // Map score to -90 to 90 degrees
+  const rotation = ((score - 300) / 550) * 180 - 90;
 
   return (
-    <div className="relative w-48 h-48">
-      {/* Semi-circle */}
+    <div className="relative w-[500px] h-[300px]">
       <svg
         className="w-full h-full"
-        viewBox="0 0 100 50"
+        viewBox="0 0 300 250"
         xmlns="http://www.w3.org/2000/svg"
       >
+        {/* Background white space fill */}
         <path
-          d="M10,50 A40,40 0 0,1 90,50"
+          d="M30,150 A120,120 0 0,1 270,150"
           fill="none"
-          stroke="#ddd"
-          strokeWidth="10"
+          strokeWidth="40"
+          stroke="white"
+        />
+        
+        <path
+          d="M30,150 A120,120 0 0,1 270,150"
+          fill="none"
+          strokeWidth="38"
+          stroke="#FF6666"
+          strokeDasharray="63 315"
+          strokeDashoffset="315"
         />
 
         <path
-          d="M10,50 A40,40 0 0,1 90,50"
+          d="M30,150 A120,120 0 0,1 270,150"
           fill="none"
-          stroke={`url(#gradient)`}
-          strokeWidth="10"
+          strokeWidth="38"
+          stroke="#FF9966"
+          strokeDasharray="63 315"
+          strokeDashoffset="252"
         />
-        <defs>
-          <linearGradient id="gradient" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#FF6666" />
-            <stop offset="30%" stopColor="#FF9966" />
-            <stop offset="50%" stopColor="#FFCC33" />
-            <stop offset="70%" stopColor="#9966FF" />
-            <stop offset="90%" stopColor="#33CCCC" />
-            <stop offset="100%" stopColor="#30D68A" />
-          </linearGradient>
-        </defs>
+        <path
+          d="M30,150 A120,120 0 0,1 270,150"
+          fill="none"
+          strokeWidth="38"
+          stroke="#FFCC33"
+          strokeDasharray="63 315"
+          strokeDashoffset="189"
+        />
+        <path
+          d="M30,150 A120,120 0 0,1 270,150"
+          fill="none"
+          strokeWidth="38"
+          stroke="#9966FF"
+          strokeDasharray="63 315"
+          strokeDashoffset="126"
+        />
+        <path
+          d="M30,150 A120,120 0 0,1 270,150"
+          fill="none"
+          strokeWidth="38"
+          stroke="#33CCCC"
+          strokeDasharray="63 315"
+          strokeDashoffset="63"
+        />
+        <path
+          d="M30,150 A120,120 0 0,1 270,150"
+          fill="none"
+          strokeWidth="38"
+          stroke="#30D68A"
+          strokeDasharray="63 315"
+          strokeDashoffset="0"
+        />
+
+        {/* Rounded Needle */}
+        <g transform={`rotate(${rotation}, 150, 150)`}>
+          <path
+            d="M150,60 
+               C150,60 154,70 154,80
+               L154,150 
+               C154,152 152,154 150,154
+               C148,154 146,152 146,150
+               L146,80
+               C146,70 150,60 150,60"
+            fill="#666666"
+          />
+        </g>
       </svg>
 
-      {/* Needle with Arrow */}
-      <div
-        className="absolute top-1/2 left-1/2 transform origin-bottom"
-        style={{
-          transform: `rotate(${rotation}deg) translate(-50%, -50%)`,
-        }}
-      >
-        {/* Needle Body */}
-        <div className="w-1 h-10 bg-gray-800"></div>
-
-        {/* Arrow at the End */}
-        <svg
-          className="absolute -top-2 left-1/2 transform -translate-x-1/2"
-          width="10"
-          height="10"
-          viewBox="0 0 10 10"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <polygon points="5,0 10,10 0,10" fill="gray" />
-        </svg>
-      </div>
-
-      {/* Score and Label */}
-      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 text-center">
-        <p className="text-4xl font-bold" style={{ color: color }}>
+      {/* Score and Label outside SVG */}
+      <div className="absolute w-full text-center" style={{ top: '65%' }}>
+        <p className="text-7xl font-bold mb-2" style={{ color }}>
           {score}
         </p>
-        <p className="text-xl font-semibold" style={{ color: color }}>
+        <p className="text-2xl tracking-wider" style={{ color }}>
           {label}
         </p>
       </div>

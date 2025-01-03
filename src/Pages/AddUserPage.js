@@ -7,19 +7,18 @@ const AddUserPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); 
+  const [error, setError] = useState("");
 
   const handleSave = async () => {
     if (!email || !password) {
       setError("Please fill in all fields.");
       return;
     }
-  
+
     try {
-      // Retrieve the authToken from localStorage
       const token = localStorage.getItem("authToken");
-      console.log("token " , token);
-  
+      console.log("token ", token);
+
 
       const response = await axios.post(
         "https://bestrate-back.onrender.com/api/admin/user",
@@ -30,21 +29,17 @@ const AddUserPage = () => {
           },
         }
       );
-  console.log("response " , response);
-  
-      // Navigate to user management page on success
+      console.log("response ", response);
       navigate("/usermanagement");
     } catch (error) {
       if (error.response && error.response.data.message) {
-        // Show backend error message
         setError(error.response.data.message);
       } else {
-        // Show generic error message
         setError("An error occurred. Please try again.");
       }
     }
   };
-  
+
 
   const handleCancel = () => {
     navigate("/usermanagement");
