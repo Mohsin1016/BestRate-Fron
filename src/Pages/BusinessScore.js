@@ -4,7 +4,6 @@ import visa from "../assests/visa.png";
 import card from "../assests/card.png";
 import discover from "../assests/discover.png";
 import amex from "../assests/amex.png";
-import meter from "../assests/Meter.png";
 import Card from "./Card";
 import b1 from "../assests/best1.png";
 import b2 from "../assests/best2.png";
@@ -232,9 +231,7 @@ const BusinessScoreCard = () => {
                 </div>
               </span>
             </h2>
-            {/* <div className="mt-4 flex justify-center">
-              <img src={meter} alt="Meter" className="w-32 sm:w-40 h-auto" />
-            </div> */}
+            
             <div className="mt-4 flex justify-center">
               <DynamicScoreMeter score={score} />
             </div>
