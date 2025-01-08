@@ -222,8 +222,13 @@ const BusinessScoreCard = () => {
                   </svg>
                 </button>
                 <div className="absolute top-1/2 left-full ml-2 transform -translate-y-1/2 w-48 bg-white text-gray-800 text-sm rounded-md shadow-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  This score indicates the performance and reliability of the
-                  business merchant.
+                  Your Business Merchant Score is an algorithm rating that is calculated using various
+                  data points that relate to you business such as your business history, merchant
+                  processing history, transaction types, processing amounts, public records and
+                  other provided information.
+
+                  It is not a measure of credit worthiness and may be used to determine your eligibility
+                  for certain Merchant Broker Products and Programs within our provider network.
                 </div>
               </span>
             </h2>
