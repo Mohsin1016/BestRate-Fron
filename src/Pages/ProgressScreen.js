@@ -46,10 +46,10 @@ const ProgressScreen = () => {
             find you the best credit card processing options for your business.
           </p>
           <div className="flex space-x-4 mt-4">
-            <img src={visa} alt="Visa" className="w-10 h-10" />
-            <img src={card} alt="Mastercard" className="w-10 h-10" />
-            <img src={discover} alt="Discover" className="w-10 h-10" />
-            <img src={amex} alt="Amex" className="w-10 h-10" />
+            <img src={visa} alt="Visa" className="h-8 sm:h-10" />
+            <img src={card} alt="Mastercard" className="h-8 sm:h-10" />
+            <img src={discover} alt="Discover" className="h-8 sm:h-10" />
+            <img src={amex} alt="Amex" className="h-8 sm:h-10" />
           </div>
         </div>
         <footer className="w-full py-4 text-center bg-[#4D658E] text-[#D9DBE1]">

@@ -8,7 +8,8 @@ import BusinessScoreCard from "./Pages/BusinessScore";
 import AdminUserPage from "./Pages/AdminUser";
 import UserManagement from "./Pages/UserManagement";
 import AddUserPage from "./Pages/AddUserPage";
-
+import ProtectedRoute from "./Pages/ProtectedRoutes";
+import { AuthProvider } from "./context/AuthContext.js";
 function App() {
   const [users, setUsers] = useState([
     { id: 1, email: "johnsmith@google.com" },
@@ -25,29 +26,43 @@ function App() {
   };
 
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/best-rate-offer" element={<BestRateOffer />} />
-          <Route
-            path="/business-questionnaire"
-            element={<BusinessQuestionnaire />}
-          />
-          <Route path="/progress_screen" element={<ProgressScreen />} />
-          <Route path="/business_scorecard" element={<BusinessScoreCard />} />
-          <Route path="/admin_usermanagement" element={<AdminUserPage />} />
-          <Route
-            path="/usermanagement"
-            element={<UserManagement users={users} setUsers={setUsers} />}
-          />
-          <Route
-            path="/adduserpage"
-            element={<AddUserPage addUser={handleAddUser} />}
-          />
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+
+            <Route
+              path="/best-rate-offer"
+              element={
+                <ProtectedRoute>
+                  <BestRateOffer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/business-questionnaire"
+              element={<BusinessQuestionnaire />}
+            />
+            <Route path="/progress_screen" element={<ProgressScreen />} />
+            <Route path="/business_scorecard" element={<BusinessScoreCard />} />
+
+
+
+            <Route path="/admin_usermanagement" element={<AdminUserPage />} />
+            <Route
+              path="/usermanagement"
+              element={<UserManagement users={users} setUsers={setUsers} />}
+            />
+            <Route
+              path="/adduserpage"
+              element={<AddUserPage addUser={handleAddUser} />}
+            />
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
+
   );
 }
 

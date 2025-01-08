@@ -5,16 +5,15 @@ import logoimg from "../assests/getmybestrate 1 (1).png";
 
 const UserManagement = () => {
   const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null); // For modal
+  const [selectedUser, setSelectedUser] = useState(null); 
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // Fetch users from the backend
   const fetchUsers = async () => {
     try {
-      // https://bestrate-back.onrender.com
+      // http://localhost:5000
       const token = localStorage.getItem("authToken");
       const response = await axios.get("https://bestrate-back.onrender.com/api/admin/users", {
         headers: {

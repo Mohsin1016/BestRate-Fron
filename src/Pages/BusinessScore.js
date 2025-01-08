@@ -34,12 +34,11 @@ const BusinessScoreCard = () => {
   const [open, setOpen] = useState(false);
   const [processingFee, setProcessingFee] = useState();
 
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   useEffect(() => {
     generateProcessingFee();
-  }, [])
+  }, []);
 
   const generateProcessingFee = () => {
     const min = 3.36;
@@ -154,11 +153,7 @@ const BusinessScoreCard = () => {
       <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
         <div className=" rounded-lg max-w-lg w-full p-6">
           <div className="mb-6">
-            <img
-              src={imglogo}
-              alt="Logo"
-              className="w-40 sm:w-48 h-auto mx-auto"
-            />
+            <img src={imglogo} alt="Logo" className="w-60 h-auto mx-auto" />
           </div>
           <p className="text-center text-base sm:text-lg font-bold text-[#3D3D3D]">
             <span className="block">CONGRATULATIONS!</span>
@@ -227,11 +222,12 @@ const BusinessScoreCard = () => {
                   </svg>
                 </button>
                 <div className="absolute top-1/2 left-full ml-2 transform -translate-y-1/2 w-48 bg-white text-gray-800 text-sm rounded-md shadow-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  This score indicates the performance and reliability of the business merchant.
+                  This score indicates the performance and reliability of the
+                  business merchant.
                 </div>
               </span>
             </h2>
-            
+
             <div className="mt-4 flex justify-center">
               <DynamicScoreMeter score={score} />
             </div>
@@ -322,8 +318,8 @@ const BusinessScoreCard = () => {
         </div>
       </div>
 
-      <div className="px-4 py-8 min-h-[90vh]">
-        <h2 className="text-center text-[#3D3D3D] text-2xl md:text-4xl mt-4 font-bold mb-6">
+      <div className="px-4 py-4 min-h-[90vh]">
+        <h2 className="text-center text-[#3D3D3D] text-2xl md:text-4xl  font-bold mb-2">
           Setup & Monthly Flat Fee
         </h2>
         <div className="flex flex-wrap justify-center  gap-4">

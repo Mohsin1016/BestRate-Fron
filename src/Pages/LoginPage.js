@@ -1,67 +1,50 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import logo from "../assests/getmybestrate 1 (1).png";
+import { AuthContext } from "../context/AuthContext.js";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [formError, setFormError] = useState("");
-  const navigate = useNavigate(); // Initialize useNavigate
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     const emailValue = e.target.value;
     setEmail(emailValue);
 
-    // Email validation regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(emailValue)) {
-      setEmailError("Please enter a valid email address.");
-    } else {
-      setEmailError("");
-    }
+    setEmailError(!emailRegex.test(emailValue) ? "Please enter a valid email address." : "");
   };
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
 
+  // const LoginPage = () => {
+  //   const [email, setEmail] = useState("");
+  //   const [password, setPassword] = useState("");
+  //   const [formError, setFormError] = useState("");
+  //   const { login } = useContext(AuthContext);
+  //   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation logic
-    if (!email || !password) {
-      setFormError("Please check the username and/or password.");
-      return;
-    }
-
-    if (emailError) {
-      return;
-    }
-
-    setFormError("");
-
     try {
-      // Make the API request
       const response = await axios.post("https://bestrate-back.onrender.com/api/user/login", {
         email,
         password,
       });
 
-      // Handle success: save the token in localStorage
-      const { token, userId } = response.data; // Get token and userId from the response
-      localStorage.setItem("authToken", token);
-      localStorage.setItem("userId", userId);
-      // Navigate to the next page
+      const { token } = response.data;
+      login(token);
       navigate("/best-rate-offer");
     } catch (error) {
-      // Handle error
-      if (error.response && error.response.data.message) {
-        setFormError(error.response.data.message); // Show backend error message
-      } else {
-        setFormError("An error occurred. Please try again.");
-      }
+      setFormError(error.response?.data?.message || "An error occurred.");
     }
   };
 
@@ -74,10 +57,7 @@ const LoginPage = () => {
       <div className="w-full max-w-md p-6 rounded-lg">
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label
-              htmlFor="email"
-              className="block mb-1 text-sm font-medium text-gray-600"
-            >
+            <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-600">
               Email
             </label>
             <input
@@ -86,21 +66,15 @@ const LoginPage = () => {
               placeholder="Email Address"
               value={email}
               onChange={handleEmailChange}
-              className={`w-full px-4 py-2 text-sm border rounded-lg focus:outline-none ${
-                emailError
+              className={`w-full px-4 py-2 text-sm border rounded-lg focus:outline-none ${emailError
                   ? "border-red-500 focus:ring-red-500 focus:border-red-500"
                   : "focus:ring-2 focus:ring-[#4D658E] focus:border-blue-500"
-              }`}
+                }`}
             />
-            {emailError && (
-              <p className="mt-1 text-sm text-red-500">{emailError}</p>
-            )}
+            {emailError && <p className="mt-1 text-sm text-red-500">{emailError}</p>}
           </div>
           <div className="mb-4">
-            <label
-              htmlFor="password"
-              className="block mb-1 text-sm font-medium text-gray-600"
-            >
+            <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-600">
               Password
             </label>
             <input
@@ -112,9 +86,7 @@ const LoginPage = () => {
               className="w-full px-4 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#4D658E] focus:border-blue-500"
             />
           </div>
-          {formError && (
-            <p className="mb-4 text-sm text-center text-red-500">{formError}</p>
-          )}
+          {formError && <p className="mb-4 text-sm text-center text-red-500">{formError}</p>}
           <div className="flex justify-center">
             <button
               type="submit"

@@ -47,7 +47,17 @@ const BusinessQuestionnaire = () => {
 
   const handleFileUpload = (e) => {
     const uploadedFiles = Array.from(e.target.files);
-    setFormData((prevData) => ({ ...prevData, files: uploadedFiles }));
+    setFormData((prevData) => ({
+      ...prevData,
+      files: [...prevData.files, ...uploadedFiles],
+    }));
+  };
+
+  const removeFile = (index) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      files: prevData.files.filter((_, i) => i !== index),
+    }));
   };
 
   const handleSubmit = async () => {
@@ -84,6 +94,7 @@ const BusinessQuestionnaire = () => {
       console.error("Error submitting the form", error);
     }
   };
+
   return (
     <>
       <div className="min-h-screen bg-gray-50 flex flex-col items-center p-4">
@@ -458,10 +469,10 @@ const BusinessQuestionnaire = () => {
             <h2 className="text-[#4D658E] sm:text-lg font-semibold mb-2 border-b border-[#4D658E] pb-1">
               Document Upload
             </h2>
-            <div className="space-y-2 mb-4 mt-4">
+            <div className="space-y-2">
               <label
                 htmlFor="file-upload"
-                className="w-full sm:w-auto px-4 py-2 border-[1px] border-[#787878] bg-white-500 text-[#787878] text-sm sm:text-base rounded-md cursor-pointer focus:outline-none mt-4"
+                className="block w-full px-4 py-2 border border-gray-300 bg-white text-sm rounded-md cursor-pointer text-center hover:bg-gray-100"
               >
                 Upload Files
               </label>
@@ -473,6 +484,24 @@ const BusinessQuestionnaire = () => {
                 className="hidden"
               />
             </div>
+            {formData.files.length > 0 && (
+              <ul className="mt-4 border-t border-gray-300 pt-2">
+                {formData.files.map((file, index) => (
+                  <li
+                    key={index}
+                    className="flex justify-between items-center text-sm py-1"
+                  >
+                    <span className="text-gray-700">{file.name}</span>
+                    <button
+                      onClick={() => removeFile(index)}
+                      className="text-red-500 hover:underline"
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            )}
           </section>
 
           {/* Submit Button */}
