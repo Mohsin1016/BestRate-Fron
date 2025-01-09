@@ -65,7 +65,6 @@ const BusinessQuestionnaire = () => {
     const apiUrl = "https://bestrate-back.onrender.com/api/form/submit";
     const data = new FormData();
 
-    // Add form data to FormData object
     Object.keys(formData).forEach((key) => {
       if (key === "files") {
         formData.files.forEach((file) => data.append("files", file));

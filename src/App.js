@@ -31,7 +31,6 @@ function App() {
         <div className="App">
           <Routes>
             <Route path="/" element={<LoginPage />} />
-
             <Route
               path="/best-rate-offer"
               element={
@@ -82,11 +81,9 @@ function App() {
               }
             />
           </Routes>
-
         </div>
       </Router>
     </AuthProvider>
-
   );
 }
 

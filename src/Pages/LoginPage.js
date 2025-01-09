@@ -39,14 +39,21 @@ const LoginPage = () => {
         email,
         password,
       });
+      console.log("response ✅✅✅✅", response);
 
-      const { token } = response.data;
-      login(token);
+      const { token, userId } = response.data;
+
+      // Store token and userId in localStorage
+      localStorage.setItem("authToken", token);
+      localStorage.setItem("userId", userId);
+
+      login(token); // Update the authentication state
       navigate("/best-rate-offer");
     } catch (error) {
       setFormError(error.response?.data?.message || "An error occurred.");
     }
   };
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
@@ -67,8 +74,8 @@ const LoginPage = () => {
               value={email}
               onChange={handleEmailChange}
               className={`w-full px-4 py-2 text-sm border rounded-lg focus:outline-none ${emailError
-                  ? "border-red-500 focus:ring-red-500 focus:border-red-500"
-                  : "focus:ring-2 focus:ring-[#4D658E] focus:border-blue-500"
+                ? "border-red-500 focus:ring-red-500 focus:border-red-500"
+                : "focus:ring-2 focus:ring-[#4D658E] focus:border-blue-500"
                 }`}
             />
             {emailError && <p className="mt-1 text-sm text-red-500">{emailError}</p>}

@@ -19,7 +19,6 @@ const AddUserPage = () => {
       const token = localStorage.getItem("authToken");
       console.log("token ", token);
 
-
       const response = await axios.post(
         "https://bestrate-back.onrender.com/api/admin/user",
         { email, password },
