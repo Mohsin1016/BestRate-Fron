@@ -42,23 +42,47 @@ function App() {
             />
             <Route
               path="/business-questionnaire"
-              element={<BusinessQuestionnaire />}
+              element={
+                <ProtectedRoute>
+                  <BusinessQuestionnaire />
+                </ProtectedRoute>
+              }
             />
-            <Route path="/progress_screen" element={<ProgressScreen />} />
-            <Route path="/business_scorecard" element={<BusinessScoreCard />} />
-
-
-
+            <Route
+              path="/progress_screen"
+              element={
+                <ProtectedRoute>
+                  <ProgressScreen />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/business_scorecard"
+              element={
+                <ProtectedRoute>
+                  <BusinessScoreCard />
+                </ProtectedRoute>
+              }
+            />
             <Route path="/admin_usermanagement" element={<AdminUserPage />} />
             <Route
               path="/usermanagement"
-              element={<UserManagement users={users} setUsers={setUsers} />}
+              element={
+                <ProtectedRoute>
+                  <UserManagement users={users} setUsers={setUsers} />
+                </ProtectedRoute>
+              }
             />
             <Route
               path="/adduserpage"
-              element={<AddUserPage addUser={handleAddUser} />}
+              element={
+                <ProtectedRoute>
+                  <AddUserPage addUser={handleAddUser} />
+                </ProtectedRoute>
+              }
             />
           </Routes>
+
         </div>
       </Router>
     </AuthProvider>

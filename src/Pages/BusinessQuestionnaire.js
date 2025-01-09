@@ -37,7 +37,7 @@ const BusinessQuestionnaire = () => {
     dob: "",
     files: [],
   });
-
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -61,6 +61,7 @@ const BusinessQuestionnaire = () => {
   };
 
   const handleSubmit = async () => {
+    setLoading(true);
     const apiUrl = "http://localhost:5000/api/form/submit";
     const data = new FormData();
 
@@ -92,12 +93,19 @@ const BusinessQuestionnaire = () => {
       navigate("/progress_screen");
     } catch (error) {
       console.error("Error submitting the form", error);
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
   return (
     <>
       <div className="min-h-screen bg-gray-50 flex flex-col items-center p-4">
+        {loading && (
+          <div className="absolute min-h-screen inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
+            <div className="loader border-t-4 border-b-4 border-blue-500 rounded-full w-16 h-16 animate-spin"></div>
+          </div>
+        )}
         <div className="mb-6 text-center">
           <img src={logo} alt="Logo" className="w-full h-auto mx-auto" />
         </div>
@@ -509,8 +517,9 @@ const BusinessQuestionnaire = () => {
             <button
               onClick={handleSubmit}
               className="w-full sm:w-auto px-6 py-2 bg-[#4D658E] text-white text-sm sm:text-base rounded-md hover:bg-[#8D658E] focus:outline-none "
+              disabled={loading}
             >
-              Find My Best Rate
+              {loading ? "Submitting..." : "Find My Best Rate"}
             </button>
           </div>
         </div>

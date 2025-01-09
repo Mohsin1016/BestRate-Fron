@@ -18,8 +18,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "90%", // Makes it fluid for smaller screens
-  maxWidth: "400px", // Limit width on larger screens
+  width: "90%", 
+  maxWidth: "400px", 
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
@@ -27,7 +27,6 @@ const style = {
 };
 const BusinessScoreCard = () => {
   // const [isModalOpen, setIsModalOpen] = useState(false);
-
   // const openModal = () => setIsModalOpen(true);
   // const closeModal = () => setIsModalOpen(false);
   const { responseData } = useContext(ResponseContext);
@@ -148,6 +147,7 @@ const BusinessScoreCard = () => {
   const toggleLightbox = () => {
     setShowLightbox((prev) => !prev);
   };
+
   return (
     <>
       <div className="flex items-center justify-center min-h-screen bg-gray-100 p-4">
