@@ -43,11 +43,10 @@ const LoginPage = () => {
 
       const { token, userId } = response.data;
 
-      // Store token and userId in localStorage
       localStorage.setItem("authToken", token);
       localStorage.setItem("userId", userId);
 
-      login(token); // Update the authentication state
+      login(token);
       navigate("/best-rate-offer");
     } catch (error) {
       setFormError(error.response?.data?.message || "An error occurred.");
