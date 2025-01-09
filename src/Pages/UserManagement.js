@@ -13,10 +13,10 @@ const UserManagement = () => {
 
   const fetchUsers = async () => {
     try {
-      // http://localhost:5000
+      // https://bestrate-back.onrender.com
       // https://bestrate-back.onrender.com
       const token = localStorage.getItem("authToken");
-      const response = await axios.get("http://localhost:5000/api/admin/users", {
+      const response = await axios.get("https://bestrate-back.onrender.com/api/admin/users", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -50,7 +50,7 @@ const UserManagement = () => {
       console.log("⌛⌛⌛ id and token are both required" , `${selectedUser._id}` , "and" , token);
 
       const response = await axios.put(
-        `http://localhost:5000/api/admin/user-update/${selectedUser._id}`,
+        `https://bestrate-back.onrender.com/api/admin/user-update/${selectedUser._id}`,
         {id: selectedUser._id , email: newEmail, password: newPassword },
         {
           headers: {
@@ -81,7 +81,7 @@ const UserManagement = () => {
       try {
         const token = localStorage.getItem("authToken");
 
-        await axios.delete(`http://localhost:5000/api/admin/user/${id}`, {
+        await axios.delete(`https://bestrate-back.onrender.com/api/admin/user/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

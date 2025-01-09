@@ -62,7 +62,7 @@ const BusinessQuestionnaire = () => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    const apiUrl = "http://localhost:5000/api/form/submit";
+    const apiUrl = "https://bestrate-back.onrender.com/api/form/submit";
     const data = new FormData();
 
     // Add form data to FormData object
