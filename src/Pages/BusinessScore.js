@@ -18,8 +18,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "90%", 
-  maxWidth: "400px", 
+  width: "90%",
+  maxWidth: "400px",
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 4,
@@ -159,44 +159,12 @@ const BusinessScoreCard = () => {
             <span className="block">CONGRATULATIONS!</span>
             <span className="block">
               YOU ARE{" "}
-              <a
-                href="/"
+              <text
                 style={{ textDecoration: "underline", paddingRight: "3px" }}
-                className="text-[#6FC7AB] cursor-pointer"
-                onClick={handleOpen}
+                className="text-[#6FC7AB]"
               >
                 APPROVED
-              </a>
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-                onBackdropClick={handleBackdropClick}
-              >
-                <Box sx={style} onClick={handleBackdropClick}>
-                  <Typography
-                    id="modal-modal-title"
-                    variant="h6"
-                    component="h2"
-                    className="text-center"
-                  >
-                    Business Merchant Score
-                  </Typography>
-                  <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                    Your Business Merchant Score is an algorithm rating that is
-                    calculated using various data points that relate to your
-                    business, such as your business history, merchant processing
-                    history, transaction types, processing amounts, public
-                    records, and other provided information.
-                  </Typography>
-                  <Typography sx={{ mt: 2 }}>
-                    It is not a measure of creditworthiness and may be used to
-                    determine your eligibility for certain Merchant Broker
-                    Products and Programs within our provider network.
-                  </Typography>
-                </Box>
-              </Modal>
+              </text>
               FOR A RATE REDUCTION!
             </span>
           </p>
@@ -209,6 +177,7 @@ const BusinessScoreCard = () => {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
+                    onClick={handleOpen}
                     strokeWidth={2}
                     stroke="currentColor"
                     className="w-5 h-5"
@@ -221,15 +190,43 @@ const BusinessScoreCard = () => {
                     />
                   </svg>
                 </button>
-                <div className="absolute top-1/2 left-full ml-2 transform -translate-y-1/2 w-48 bg-white text-gray-800 text-sm rounded-md shadow-lg p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                  Your Business Merchant Score is an algorithm rating that is calculated using various
-                  data points that relate to you business such as your business history, merchant
-                  processing history, transaction types, processing amounts, public records and
-                  other provided information.
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                  onBackdropClick={handleBackdropClick}
+                >
+                  <Box
+                    className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-lg p-4 sm:p-6 md:p-8 w-[90%] sm:w-[80%] md:w-[30%] max-w-lg"
+                    onClick={handleBackdropClick}
+                  >
+                    <Typography
+                      id="modal-modal-title"
+                      component="h2"
+                      className="text-center text-lg sm:text-xl md:text-2xl font-bold"
+                    >
+                      Business Merchant Score
+                    </Typography>
+                    <Typography
+                      id="modal-modal-description"
+                      className="mt-4 text-sm sm:text-base text-justify leading-relaxed"
+                    >
+                      Your Business Merchant Score is an algorithm rating that is calculated
+                      using various data points that relate to your business, such as your
+                      business history, merchant processing history, transaction types,
+                      processing amounts, public records, and other provided information.
+                    </Typography>
+                    <Typography
+                      className="mt-4 text-sm sm:text-base text-justify leading-relaxed"
+                    >
+                      It is not a measure of creditworthiness and may be used to determine your
+                      eligibility for certain Merchant Broker Products and Programs within our
+                      provider network.
+                    </Typography>
+                  </Box>
+                </Modal>
 
-                  It is not a measure of credit worthiness and may be used to determine your eligibility
-                  for certain Merchant Broker Products and Programs within our provider network.
-                </div>
               </span>
             </h2>
 
